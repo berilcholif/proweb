@@ -10,9 +10,9 @@ export default {
   },
 
   methods: {
-    myFunction() {
-      document.getElementById("myDialog").showModal();
-    },
+    //   myFunction() {
+    //     document.getElementById("myDialog").showModal();
+    //   },
 
     Berubah() {
       this.nama = "beril";
@@ -24,7 +24,7 @@ export default {
       this.nama = data.randomWords;
       console.log(data);
     },
-  },
+  }
 };
 </script>
 
@@ -41,9 +41,9 @@ export default {
       {{ nama }}
       <button @click="Berubah()">Berubah</button>
       <button @click="ambildata()">Ambil Data</button>
-      <button class="btn" @click="myFunction()">Show dialog</button>
-      <!-- ini dialog -->
-      <dialog id="myDialog">This is a dialog window</dialog>
+      <!-- <button class="btn" @click="myFunction()">Show dialog</button>
+      ini dialog
+      <dialog id="myDialog">This is a dialog window</dialog> -->
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
