@@ -1,57 +1,37 @@
 <script>
-import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
-
 export default {
   data() {
     return {
-      nama: "",
+      listsuhu: [],
     };
   },
-
   methods: {
-    //   myFunction() {
-    //     document.getElementById("myDialog").showModal();
-    //   },
-
-    Berubah() {
-      this.nama = "beril";
-    },
-
     async ambildata() {
-      const response = await fetch("http://localhost:4000/pelolo");
+      const response = await fetch("http://localhost:3000/getlist");
       const data = await response.json();
-      this.nama = data.randomWords;
+      this.listsuhu = data.Sensor_suhu;
       console.log(data);
     },
-  }
+  },
 };
 </script>
 
 <template>
-  <header>
-
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div style="display:block" class="wrapper">
-      <HelloWorld msg="IT Telkom Surabaya" />
-
-      <input type="text" v-model="nama" />
-
-      {{ nama }}
-      <button @click="Berubah()">Berubah</button>
-      <button @click="ambildata()">Ambil Data</button>
-      <!-- <button class="btn" @click="myFunction()">Show dialog</button>
-      ini dialog
-      <dialog id="myDialog">This is a dialog window</dialog> -->
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <table class="border-2 bg-red-500">
+    <th>
+      <tr class="border-2">
+        <td>Waktu</td>
+        <td>Suhu</td>
+      </tr>
+      <tr v-for="item in listsuhu" class="border-2">
+        <td>{{ item.waktu }}</td>
+        <td>{{ item.suhu }}</td>
+      </tr>
+    </th>
+  </table>
+  <div>
+    <button class="bg-blue-600" @click="ambildata()"><b>Ambil Data</b></button>
+  </div>
 </template>
 
 <style scoped>
