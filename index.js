@@ -1,24 +1,23 @@
-var randomWords = require('random-words');
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const app = express();
-const port = 4000;
+const port = 3000;
+
 app.use(express.json());
 app.use(cors());
 
-
-app.get('/pelolo', (req, res) => {
-  res.send(randomWords() + '\n');
+app.get("/getlist", function (req, res) {
+  res.send({
+    Sensor_suhu: [
+      { suhu: 30, waktu: "2023-01-01 11:00" },
+      { suhu: 38, waktu: "2023-01-05 11:30" },
+      { suhu: 24, waktu: "2023-01-07 12:00" },
+      { suhu: 34, waktu: "2023-01-08 12:00" },
+    ],
+  });
 });
 
-app.post('/pelolo1', (req, res) => {
-  var x = req.body;
-  res.send("nomer yang akan menang adalah = " + req.body.nomor);
-});
-
-app.listen(port, () => {
-  console.log(`cli-nodejs-api listening at http://localhost:${port}`)
-});
+app.listen(port);
 // const http = require('http');
 // var randomWords = require('random-words');
 
